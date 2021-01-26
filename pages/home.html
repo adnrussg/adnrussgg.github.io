@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <style>
+            #dropdownhover:hover .dropdown-menu{
+                display: block;
+            }
+            .dropdown-menu{
+                margin-top: 0;
+            }
+            .scrollToTopBtn {
+                background-color:#726b6b;
+                border: none;
+                border-radius: 50%;
+                color: white;
+                cursor: pointer;
+                font-size: 24px;
+                line-height: 48px;
+                width: 48px;
+                
+                /* place it at the bottom right corner */
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                /* keep it at the top of everything else */
+                z-index: 100;
+                /* hide with opacity */
+                opacity: 0;
+                /* also add a translate effect */
+                transform: translateY(100px);
+                /* and a transition */
+                transition: all .5s ease
+            }
+            .scrollToTopBtn:hover{
+                background-color: black;
+            }
+            .showBtn {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        </style>
+        <title>Computer World Superstore</title>
+        <link rel="shortcut icon" type="icon" href="../img/CWLogo.png" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap -->
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <!-- Bootstrap-ecommerce -->
+        <link href="../css/bootstrap.css v=2.0.css" rel="stylesheet" type="text/css" />
+        <link href="../css/ui.css v=2.0.css" rel="stylesheet" type="text/css" />
+        <link href="../css/responsive.css v=2.0.css" rel="stylesheet" media="only screen and (max-width: 1200px)"/>
+
+        <!-- fonticon -->
+        <link href="../fontawesomecss/all.css" rel="stylesheet" type="text/css" />
+        <link href="../fontawesomecss/fontawesome.min.css" type="text/css" rel="stylesheet">
+
+        <!-- Custom styling -->
+        <link href="../css/assets_css_style.css v=2.0.css" rel="stylesheet" />
+        <link href="../customcss/flickity.css" rel="stylesheet" />
+        <link href="../customcss/extracarousel.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- HeadNavbar -->
+            <header class="section-header">
+                <section class="header-top-light border-bottom bg-primary">
+                    <div class="container">
+                        <nav class="d-flex flex-column flex-md-row">
+                            <ul class="nav mr-auto d-none d-md-flex">
+                                <li><a href="https://www.facebook.com/ComputerWorldSuperstore/?ref=page_internal" class="nav-link px-2"> <i class="fab fa-facebook"></i> </a></li>
+                                <li><a class="nav-link px-2" style="color: white;"> <i class="fas fa-phone-alt"></i> 0933 035 2587 </a></li>
+                            </ul>
+                            <ul class="nav">
+                                <li class="nav-item"><a href="about.html" class="nav-link"> About Us </a></li>
+                                <li class="nav-item"><a href="#" class="nav-link"> Delivery </a></li>
+                                <li class="nav-item"><a href="#" class="nav-link"> Help </a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </section>
+            
+                <section class="header-main border-bottom">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-2 col-6">
+                                <a href="home.html" class="brand-wrap">
+                                    <img class="img-sm" src="../img/CWLogo.png" style="width: 60px; height: 60px;">
+                                </a>
+                            </div>
+                            <div class="col-lg-6 col-sm-12 col-12">
+                                <form action="#" class="search">
+                                    <div class="input-group w-100">
+                                        <input type="text" class="form-control" placeholder="Search">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="submit">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-lg-4 colsm-6 col-12">
+                                <div class="widgets-wrap float-md-right">
+                                    <a href="cart.html" class="widget-header mr-2">
+                                        <div class="icon">
+                                            <i class="icon-sm rounded-circle border"><i class="fas fa-shopping-cart"></i></i>
+                                            <span class="notify">0</span>
+                                        </div>
+                                        </a>
+                                        <div class="widget-header dropdown">
+                                            <a href="#" data-toggle="dropdown" data-offset="20,10">
+                                                <div class="icontext">
+                                                    <div class="icon">
+                                                        <i class="icon-sm rounded-circle border"><i class="fa fa-user"></i></i>
+                                                    </div>
+                                                <div class="text">
+                                                    <small class="text-muted">Hello, Sign in</small>
+                                                    <div>My account <i class="fa fa-caret-down"></i> </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <form class="px-4 py-3">
+                                                <div class="form-group">
+                                                    <label>Email address</label>
+                                                    <input type="email" class="form-control" placeholder="email@example.com">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Password</label>
+                                                    <input type="password" class="form-control" placeholder="Password">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Sign in</button>
+                                            </form>
+                                            <hr class="dropdown-divider">
+                                            <a class="dropdown-item" href="#">Have account? Sign up</a>
+                                            <a class="dropdown-item" href="#">Forgot password?</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- SubNavbar -->
+                <nav class="navbar navbar-main navbar-expand-xl border-bottom">
+                    <div class="container">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav5"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="main_nav5">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="home.html"><strong>Home</strong></a>
+                                </li>
+                                <li class="nav-item dropdown" id="dropdownhover">
+                                    <a class="nav-link" data-toggle="dropdown" href="#"><strong>Brands</strong></a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Acer</a>
+                                        <a class="dropdown-item" href="#">AMD</a>
+                                        <a class="dropdown-item" href="#">Asus</a>
+                                        <a class="dropdown-item" href="#">Intel</a>
+                                        <a class="dropdown-item" href="#">Lenovo</a>
+                                        <a class="dropdown-item" href="#">Western Digital</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown" id="dropdownhover">
+                                    <a class="nav-link" data-toggle="dropdown" href="#"><strong>Categories</strong></a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Laptop</a>
+                                        <a class="dropdown-item" href="#">Motherboard, Video Card & Processor</a>
+                                        <a class="dropdown-item" href="#">Casing, Monitor & Power Supply</a>
+                                        <a class="dropdown-item" href="#">Accessories</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="productlist.html"><strong>Shop</strong></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <!-- End SubNavbar// -->
+            </header>
+        <!-- END HeadNavbar -->
+
+        <!-- Carousel -->
+        <section class="container-fluid works-section" style="background-color: #000000;">
+            <div class="main-gallery">
+                <div class="gallery-cell">
+                    <div class="works-content">
+                        <div class="img-cntr">
+                            <img src="../img/ROGChristmas.jpg">
+                        </div>
+                        <div class="work-desc">
+                            <h3 style="color: #ff0100; margin-bottom: 20px; font-family: Azonix;"> ROG SHARE 2020 IS BACK! </h3>
+                            <p> Celebrate the holidays the gamers’ way A-S-A-P. Gift yourself or your loved ones any of the featured ROG or TUF gaming
+                            notebooks and get limited-time bundles worth up to PHP 53,000! This special promo starts November 25, 2020. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-cell">
+                    <div class="works-content">
+                        <div class="img-cntr">
+                            <img src="../img/WD.jpg">
+                        </div>
+                        <div class="work-desc">
+                            <h3 style="color: #ff0100; margin-bottom: 20px; font-family: Azonix;"> DRIVE YOUR GAME
+                            PERFORMANCE STORAGE, PURPOSE-BUILT FOR GAMING </h3>
+                            <p> Stop staring at load screens. Increase your capacity and speed to get in fast and take them out faster. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-cell">
+                    <div class="works-content">
+                        <div class="img-cntr">
+                            <img src="../img/Zenbook.jpg">
+                        </div>
+                        <div class="work-desc">
+                            <h3 style="color: #2200ff; margin-bottom: 20px; font-family: Azonix;"> The World's Thinnest 13" Laptop with Full I/O Ports </h3>
+                            <p> Think bigger and create better with the #ASUSZenBook 13, now powered with the latest Intel 11th Gen processors. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-cell">
+                    <div class="works-content">
+                        <div class="img-cntr">
+                            <img src="../img/Wifi-Router.jpg">
+                        </div>
+                        <div class="work-desc">
+                            <h3 style="color: #2200ff; margin-bottom: 20px; font-family: Azonix;"> Upgrade your home WiFi network. </h3>
+                            <p> Home schooling can put big demands on your network, especially with interactive classes using video chat. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-cell">
+                    <div class="works-content">
+                        <div class="img-cntr">
+                            <img src="../img/TUFM3.jpg">
+                        </div>
+                        <div class="work-desc">
+                            <h3 style="color:#f8b942; margin-bottom: 20px; font-family: Azonix;"> STRIDE LIGHT, BATTLE HARD </h3>
+                            <p> Fitted with a gaming-grade 7,000-dpi optical sensor, TUF Gaming M3 delivers the accuracy, precision and speed you need
+                            to compete. And with a 1,000Hz polling rate, you'll enjoy lag-free responsiveness for ultra-smooth gaming experiences. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Carousel End -->
+
+        <!-- Brands Design -->
+        <section class="section-name bg padding-y-sm">
+            <div class="container">
+                <header class="section-heading">
+                    <h3 class="section-title text-primary" style="text-align: center;"><i>Partner Brands</i></h3>
+                </header>
+        
+                <div class="row">
+                    <div class="col-md-2 col-6">
+                        <figure class="box item-logo">
+                            <a><img src="../img/AsusLogo.png"></a>
+                        </figure>
+                    </div>
+                    <div class="col-md-2  col-6">
+                        <figure class="box item-logo">
+                            <a><img src="../img/WDLogo.png"></a>
+                        </figure>
+                    </div>
+                    <div class="col-md-2  col-6">
+                        <figure class="box item-logo">
+                            <a><img src="../img/AMDLogo.png"></a>
+                        </figure>
+                    </div>
+                    <div class="col-md-2  col-6">
+                        <figure class="box item-logo">
+                            <a><img src="../img/IntelLogo.png"></a>
+                        </figure>
+                    </div>
+                    <div class="col-md-2  col-6">
+                        <figure class="box item-logo">
+                            <a><img src="../img/AcerLogo.png"></a>
+                        </figure>
+                    </div>
+                    <div class="col-md-2  col-6">
+                        <figure class="box item-logo">
+                            <a><img src="../img/LenovoLogo.png"></a>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Brands Design End -->
+
+        <!-- Products here -->
+        <section class="section-name  padding-y-sm" id="fp">
+            <div class="container">
+                <header class="section-heading">
+                    <a href="productlist.html" class="btn btn-outline-primary float-right">See all</a>
+                    <h3 class="section-title">Featured products</h3>
+                </header>
+        
+                <div class="row">
+                    <div class="col-md-3">
+                        <div href="#" class="card card-product-grid">
+                            <a href="#" class="img-wrap"> <img id="image1"> </a>
+                            <figcaption class="info-wrap">
+                                <a href="#" class="title" id="title1"></a>
+                                <div class="price mt-1" id="price1"></div>
+                            </figcaption>
+                        </div>
+                    </div> 
+                    <div class="col-md-3">
+                        <div href="#" class="card card-product-grid">
+                            <a href="#" class="img-wrap"> <img id="image2"> </a>
+                            <figcaption class="info-wrap">
+                                <a href="#" class="title" id="title2"></a>
+                                <div class="price mt-1" id="price2"></div>
+                            </figcaption>
+                        </div>
+                    </div> 
+                    <div class="col-md-3">
+                        <div href="#" class="card card-product-grid">
+                            <a href="#" class="img-wrap"> <img id="image3"> </a>
+                            <figcaption class="info-wrap">
+                                <a href="#" class="title" id="title3"></a>
+                                <div class="price mt-1" id="price3"></div>
+                            </figcaption>
+                        </div>
+                    </div> 
+                    <div class="col-md-3">
+                        <div href="#" class="card card-product-grid">
+                            <a href="#" class="img-wrap"> <img id="image4"> </a>
+                            <figcaption class="info-wrap">
+                                <a href="#" class="title" id="title4"></a>
+                                <div class="price mt-1" id="price4"></div>
+                            </figcaption>
+                        </div>
+                    </div> 
+                    <div class="col-md-3">
+                        <div href="#" class="card card-product-grid">
+                            <a href="#" class="img-wrap"> <img id="image5"> </a>
+                            <figcaption class="info-wrap">
+                                <a href="#" class="title" id="title5"></a>
+                                <div class="price mt-1" id="price5"></div>
+                            </figcaption>
+                        </div>
+                    </div> 
+                    <div class="col-md-3">
+                        <div href="#" class="card card-product-grid">
+                            <a href="#" class="img-wrap"> <img id="image6"> </a>
+                            <figcaption class="info-wrap">
+                                <a href="#" class="title" id="title6"></a>
+                                <div class="price mt-1" id="price6"></div>
+                            </figcaption>
+                        </div>
+                    </div> 
+                    <div class="col-md-3">
+                        <div href="#" class="card card-product-grid">
+                            <a href="#" class="img-wrap"> <img id="image7"> </a>
+                            <figcaption class="info-wrap">
+                                <a href="#" class="title" id="title7"></a>
+                                <div class="price mt-1" id="price7"></div>
+                            </figcaption>
+                        </div>
+                    </div> 
+                    <div class="col-md-3">
+                        <div href="#" class="card card-product-grid">
+                            <a href="#" class="img-wrap"> <img id="image8"> </a>
+                            <figcaption class="info-wrap">
+                                <a href="#" class="title" id="title8"></a>
+                                <div class="price mt-1" id="price8"></div>
+                            </figcaption>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </section>
+
+        <section class="section-name bg padding-y-sm" style="background-color: #000000;">
+            <div class="container">
+                <header class="section-heading">
+                    <h3 class="section-title text-primary" style="text-align: center;"><i>Categories</i></h3>
+                </header>
+            </div>
+        </section>
+
+        <!-- Choices Display -->
+        <section class="section-content padding-y">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card bg-dark">
+                            <img src="../img/LaptopCover2.jpg" class="card-img opacity" >
+                            <div class="card-img-overlay text-white">
+                                <h5 class="card-title">Laptops</h5>
+                                <p class="card-text">Empowered by Innovation.</p>
+                                <a href="#" class="btn btn-light">Browse</a>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-md-4">
+                        <div class="card bg-dark">
+                            <img src="../img/MotherboardCover.jpg" class="card-img opacity">
+                            <div class="card-img-overlay text-white">
+                                <h5 class="card-title">Motherboard, Video Card, Processor</h5>
+                                <p class="card-text">Real Hardware.</p>
+                                <a href="#" class="btn btn-light">Browse</a>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-md-4">
+                        <div class="card bg-dark">
+                            <img src="../img/MonitorCover.jpg" class="card-img opacity">
+                            <div class="card-img-overlay text-white">
+                                <h5 class="card-title">Monitor</h5>
+                                <p class="card-text">Pixel Perfection.</p>
+                                <a href="#" class="btn btn-light">Browse</a>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                <div class="row" style="padding-top: 40px;">
+                    <div class="col-md-4">
+                        <div class="card bg-dark">
+                            <img src="../img/MotherboardCover2.jpg" class="card-img opacity">
+                            <div class="card-img-overlay text-white">
+                                <h5 class="card-title">Casing & Power Supply</h5>
+                                <p class="card-text">Technology you can trust.</p>
+                                <a href="#" class="btn btn-light">Browse</a>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-md-4">
+                        <div class="card bg-dark">
+                            <img src="../img/AccessoriesCover.jpg" class="card-img opacity">
+                            <div class="card-img-overlay text-white">
+                                <h5 class="card-title">Accessories</h5>
+                                <p class="card-text">See, hear and feel the difference.</p>
+                                <a href="#" class="btn btn-light">Browse</a>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-md-4">
+                        <div class="card bg-dark">
+                            <img src="../img/CategoriesCover.jpg" class="card-img opacity">
+                            <div class="card-img-overlay text-white">
+                                <h5 class="card-title">Looking for Something?</h5>
+                                <p class="card-text">Browse All Items</p>
+                                <a href="productlist.html" class="btn btn-light">Shop</a>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </section>
+        <!-- End Choices -->
+
+        <!-- ScrolltoTopBTN -->
+        <button class="scrollToTopBtn"><i class="fas fa-caret-up"></i></button>
+
+        <!-- FOOTER -->
+        <footer class="section-footer border-top bg">
+            <div class="container">
+                <section class="footer-top  padding-y">
+                    <div class="row">
+                        <aside class="col-md-4 col-12">
+                            <article class="mr-md-4">
+                                <h5 class="title">Contact us</h5>
+                                <p>"Our Name Speaks For Our Business"</p>
+                                <ul class="list-icon">
+                                    <li> <i class="icon fa fa-map-marker"> </i>Roxas Ave., Corner Padre Gomez Street, Barangay 34-D Poblacion 8000 Davao City, Philippines </li>
+                                    <li> <i class="icon fa fa-envelope"> </i> computerworld@gmail.com</li> <!-- Sample Email of CW -->
+                                    <li> <i class="icon fa fa-phone"> </i> (082) 222-4058, (082) 227-6132</li>
+                                    <li> <i class="icon fa fa-clock"> </i>Mon-Sat 9:00am - 6:00pm</li>
+                                </ul>
+                            </article>
+                        </aside>
+                        <aside class="col-md col-6">
+                            <h6 class="title">Who We Are?</h6>
+                            <ul class="list-unstyled">
+                                <li> <a href="about.html">About us</a></li>
+                                <li> <a href="https://www.google.com/maps/search/?api=1&query=7.070110200762624, 125.61473827864309&query_place_id=ChIJkYxMXpxt-TIR6Uu0PMKIzgw">Locate Us</a></li>   
+                            </ul>
+                        </aside>
+                        <aside class="col-md col-6">
+                            <h6 class="title">Need Help?</h6>
+                            <ul class="list-unstyled">
+                                <li> <a href="https://www.messenger.com/t/1558316877724712/">Contact us</a></li>
+                            </ul>
+                        </aside>
+                        <aside class="col-md col-6">
+                            <h6 class="title">Account</h6>
+                            <ul class="list-unstyled">
+                                <li> <a href="cart.html"> My Orders </a></li>
+                            </ul>
+                        </aside>
+                        <aside class="col-md">
+                            <h6 class="title">Social</h6>
+                            <ul class="list-unstyled">
+                                <li><a href="https://www.facebook.com/ComputerWorldSuperstore/?ref=page_internal"> <i class="fab fa-facebook"></i> Facebook </a></li>
+                            </ul>
+                        </aside>
+                    </div>
+                </section>
+        
+                <section class="footer-bottom border-top row">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <span class="pr-2">&copy 2020 Computer World Superstore All Rights Reserved</span>
+                                <span class="pr-2"><a href="#">Privacy policy</a></span>
+                                <span class="pr-2"><a href="#">Terms of use</a></span>
+                            </div>
+                            <div class="col-md-4 text-md-right">
+                                <span class="pr-2">Philippines</span>
+                                <i class="fab fa-lg fa-cc-visa"></i>
+                                <i class="fab fa-lg fa-cc-paypal"></i>
+                                <i class="fab fa-lg fa-cc-mastercard"></i>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </footer>
+        <!-- FOOTER END -->
+
+        <!-- BootstrapEcommerceJS -->
+        <script src="../js/jquery-3.5.1.slim.min.js" type="text/javascript"></script>
+        <script src="../js/ecommerce_bootstrap.bundle.min.js" type="text/javascript"></script>
+        <script src="../js/script.js" type="text/javascript"></script>
+        <!-- BootstrapJS -->
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <!-- CustomJS -->
+        <script src="../customjs/flickity.pkgd.min.js"></script>
+        <!-- FontAwesomeJS -->
+        <script defer src="../fontawesomejs/all.js"></script>
+        <script defer src="../fontawesomejs/brands.js"></script>
+        <script defer src="../fontawesomejs/solid.js"></script>
+        <script defer src="../fontawesomejs/fontawesome.js"></script>
+        <!-- SubNavbar Hover -->
+        <script>
+            $(document).ready(function () {
+                $("#dropdownhover").hover(function () {
+                    var dropdownMenu = $(this).children(".dropdown-menu");
+                    if (dropdownMenu.is(":visible")) {
+                        dropdownMenu.parent().toggleClass("open");
+                    }
+                });
+            });
+        </script>
+        <!-- ButtonClick to the Top -->
+        <script>
+            var elem = document.querySelector('.main-gallery');
+                var flkty = new Flickity(elem, {
+                    cellAlign: 'center',
+                    wrapAround: true,
+                    prevNextButtons: true,
+                    draggable: false,
+                    pageDots: true,
+                    contain: true,
+                    autoPlay: true
+                });
+            // We select the element we want to target
+                var target = document.querySelector("#fp");
+
+                var scrollToTopBtn = document.querySelector(".scrollToTopBtn")
+                var rootElement = document.documentElement
+
+                // Next we want to create a function that will be called when that element is intersected
+                function callback(entries, observer) {
+                    // The callback will return an array of entries, even if you are only observing a single item
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // Show button
+                            scrollToTopBtn.classList.add("showBtn")
+                        } else {
+                            // Hide button
+                            scrollToTopBtn.classList.remove("showBtn")
+                        }
+                    });
+                }
+
+                function scrollToTop() {
+                    rootElement.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    })
+                }
+                scrollToTopBtn.addEventListener("click", scrollToTop);
+
+                // Next we instantiate the observer with the function we created above. This takes an optional configuration
+                // object that we will use in the other examples.
+                let observer = new IntersectionObserver(callback);
+                // Finally start observing the target element
+                observer.observe(target);
+        </script>
+        <!-- Local Storage -->
+        <script>
+            var ProductDetails = window.localStorage;
+            window.addEventListener('DOMContentLoaded', function () {
+                loadDetails();
+            });
+            function savingData() {
+                var product_details = {
+                    dtalist: [
+                        { productname: "Asus Zenbook 13 UX325EA Intel® Core™ i5-1135G7 processor", price: 54995.00, image: "../img/ZenbookProduct.jpg", tag: 1, inCart: 0 },
+                        { productname: "darkFlash DLM21 White Micro Computer Case with Door Opening Tempered Glass", price: 2500.00, image: "../img/DarkFlash_DLM21.jpg", tag: 2, inCart: 0 },
+                        { productname: "Asus AC1300 Dual Band Wi-Fi Router with MU-MIMO and Parental Controls", price: 3890.00, image: "../img/ASUS_RT-AC1300UHP.jpg", tag: 3, inCart: 0 },
+                        { productname: "Western Digital_BLACK P10 Game Drive 5TB USB 3.2 Gen 1", price: 6270.00, image: "../img/WD-Black-P10.png", tag: 4, inCart: 0 },
+                        { productname: "TUF Gaming M3 ergonomic wired RGB gaming mouse with 7000-dpi sensor", price: 1050.00, image: "../img/TUFM3.png", tag: 5, inCart: 0 },
+                        { productname: "TUF Gaming VG27AQL1A G-SYNC Compatible Gaming Monitor –27 inch WQHD", price: 24989.00, image: "../img/TUF%20Gaming%20VG27AQL1A.jpg", tag: 6, inCart: 0 },
+                        { productname: "ROG MAXIMUS XII HERO 10th Gen Intel® Core™ processors", price: 24980.00, image: "../img/ROG%20MAXIMUS%20XII%20HERO.png", tag: 7, inCart: 0 },
+                        { productname: "COOLER MASTER MWE 500 WHITE 80+ 500W BRONZE RATED POWER SUPPLY", price: 2500.00, image: "../img/CoolerMasterPSU.png", tag: 8, inCart: 0 },
+                        { productname: "INTEL CORE i7-8700 3.2GHZ 12MB CACHE LGA1151 8TH GEN PROCESSOR", price: 18995.00, image: "../img/IntelCorei78thGen.jpg", tag: 9, inCart: 0 },
+                        { productname: "AMD Ryzen™ 5 2400G with Radeon™ RX Vega 11 Graphics", price: 7161.00, image: "../img/AMDRyzen52400g.webp", tag: 10, inCart: 0 },
+                        { productname: "MSI GTX1650 SUPER 4GB GDDR6 128-Bit Single Fan Graphics Card", price: 9300.00, image: "../img/MSIGTX1650.jpg", tag: 11, inCart: 0 },
+                        { productname: "Lenovo Legion 5i (15”) Powered by up to 10th Gen Intel® Core™ i7 H processors", price: 68995.00, image: "../img/LenovoLegion5i.webp", tag: 12, inCart: 0 },
+                    ]
+                }
+                var datalist = ProductDetails.getItem("datalist")
+                //console.log(product_details)
+                var convertJSON = JSON.stringify(product_details);
+                //console.log(convertJSON)
+                ProductDetails.setItem("datalist", convertJSON);
+            }
+
+            function saveCurrentProductView(index) {
+                ProductDetails.setItem("currentIndex", index);
+                window.location.href = "./productview.html";
+            }
+
+            function loadDetails() {
+                savingData();
+                var datalist = ProductDetails.getItem("datalist");
+                if (datalist != null) {
+                    var convertObject = JSON.parse(datalist);
+                    var ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+                    var titles = ids.map((id) => document.getElementById(`title${id}`));
+                    var prices = ids.map((id) => document.getElementById(`price${id}`));
+                    var images = ids.map((id) => document.getElementById(`image${id}`));
+
+                    ids.forEach((id, index) => {
+                        titles[index].onclick = () => saveCurrentProductView(index);
+                        images[index].onclick = () => saveCurrentProductView(index);
+                        images[index].src = convertObject.dtalist[index].image;
+                        titles[index].innerHTML = convertObject.dtalist[index].productname;
+                        prices[index].innerHTML = "₱" + convertObject.dtalist[index].price + ".00";
+                    });
+                }
+            }
+        </script>
+        <script src="../customjs/main.js"></script>
+    </body>
+</html>

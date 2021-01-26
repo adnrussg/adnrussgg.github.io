@@ -1,0 +1,812 @@
+<!-- This html uses local storage, Shop page -->
+<!doctype html>
+<html lang="en">
+    <head>
+        <style>
+            #dropdownhover:hover .dropdown-menu{
+                display: block;
+            }
+            .dropdown-menu{
+                margin-top: 0;
+            }
+            .scrollToTopBtn {
+                background-color: #726b6b;
+                border: none;
+                border-radius: 50%;
+                color: white;
+                cursor: pointer;
+                font-size: 24px;
+                line-height: 48px;
+                width: 48px;
+                
+                /* place it at the bottom right corner */
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                /* keep it at the top of everything else */
+                z-index: 100;
+                /* hide with opacity */
+                opacity: 0;
+                /* also add a translate effect */
+                transform: translateY(100px);
+                /* and a transition */
+                transition: all .5s ease
+            }
+            .scrollToTopBtn:hover{
+                background-color: black;
+            }
+            .showBtn {
+                opacity: 1;
+                transform: translateY(0)
+            }
+            #snackbar {
+                visibility: hidden;
+                min-width: 150px;
+                margin-left: -125px;
+                background-color: #3167eb;
+                color: #fff;
+                text-align: center;
+                border-radius: 10px;
+                padding: 16px;
+                position: fixed;
+                z-index: 1;
+                left: 97.7%;
+                bottom: 30px;
+                font-size: 17px;
+            }
+
+            #snackbar.show {
+                visibility: visible;
+                -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+                animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            }
+
+            @-webkit-keyframes fadein {
+                from {bottom: 0; opacity: 0;} 
+                to {bottom: 30px; opacity: 1;}
+            }
+
+            @keyframes fadein {
+                from {bottom: 0; opacity: 0;}
+                to {bottom: 30px; opacity: 1;}
+            }
+
+            @-webkit-keyframes fadeout {
+                from {bottom: 30px; opacity: 1;} 
+                to {bottom: 0; opacity: 0;}
+            }
+
+            @keyframes fadeout {
+                from {bottom: 30px; opacity: 1;}
+                to {bottom: 0; opacity: 0;}
+            }
+        </style>
+        <title>Computer World Superstore</title>
+        <link rel="shortcut icon" type="icon" href="../img/CWLogo.png" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap -->
+        <!-- <link href="../css/bootstrap.css" rel="stylesheet"> -->
+        <!-- Bootstrap-ecommerce -->
+        <link href="../css/bootstrap.css v=2.0.css" rel="stylesheet" type="text/css" />
+        <link href="../css/ui.css v=2.0.css" rel="stylesheet" type="text/css" />
+        <link href="../css/responsive.css v=2.0.css" rel="stylesheet" media="only screen and (max-width: 1200px)"/>
+        
+        <!-- fonticon -->
+        <link href="../fontawesomecss/all.css" rel="stylesheet" type="text/css" />
+        <link href="../fontawesomecss/fontawesome.min.css" type="text/css" rel="stylesheet">
+
+        <!-- Custom styling -->
+        <link href="../css/assets_css_style.css v=2.0.css" rel="stylesheet" />
+
+        <!-- plugin: fancybox  -->
+        <link href="../customcss/jquery.fancybox.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+        <!-- HeadNavbar -->
+        <header class="section-header">
+            <section class="header-top-light border-bottom bg-primary">
+                <div class="container">
+                    <nav class="d-flex flex-column flex-md-row">
+                        <ul class="nav mr-auto d-none d-md-flex">
+                            <li><a href="https://www.facebook.com/ComputerWorldSuperstore/?ref=page_internal"
+                                    class="nav-link px-2"> <i class="fab fa-facebook"></i> </a></li>
+                            <li><a class="nav-link px-2" style="color: white;"> <i class="fas fa-phone-alt"></i> 0933 035 2587
+                                </a></li>
+                        </ul>
+                        <ul class="nav">
+                            <li class="nav-item"><a href="about.html" class="nav-link"> About Us </a></li>
+                            <li class="nav-item"><a href="#" class="nav-link"> Delivery </a></li>
+                            <li class="nav-item"><a href="#" class="nav-link"> Help </a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </section>
+        
+            <section class="header-main border-bottom">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-2 col-6">
+                            <a href="home.html" class="brand-wrap">
+                                <img class="img-sm" src="../img/CWLogo.png" style="width: 60px; height: 60px;">
+                            </a>
+                        </div>
+                        <div class="col-lg-6 col-sm-12 col-12">
+                            <form action="#" class="search">
+                                <div class="input-group w-100">
+                                    <input type="text" class="form-control" placeholder="Search">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-4 colsm-6 col-12">
+                            <div class="widgets-wrap float-md-right">
+                                <a href="cart.html" class="widget-header mr-2">
+                                    <div class="icon">
+                                        <i class="icon-sm rounded-circle border"><i class="fas fa-shopping-cart"></i></i>
+                                        <span class="notify">0</span>
+                                    </div>
+                                </a>
+                                <div class="widget-header dropdown">
+                                    <a href="#" data-toggle="dropdown" data-offset="20,10">
+                                        <div class="icontext">
+                                            <div class="icon">
+                                                <i class="icon-sm rounded-circle border"><i class="fa fa-user"></i></i>
+                                            </div>
+                                            <div class="text">
+                                                <small class="text-muted">Hello, Sign in</small>
+                                                <div>My account <i class="fa fa-caret-down"></i> </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <form class="px-4 py-3">
+                                            <div class="form-group">
+                                                <label>Email address</label>
+                                                <input type="email" class="form-control" placeholder="email@example.com">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Password</label>
+                                                <input type="password" class="form-control" placeholder="Password">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Sign in</button>
+                                        </form>
+                                        <hr class="dropdown-divider">
+                                        <a class="dropdown-item" href="#">Have account? Sign up</a>
+                                        <a class="dropdown-item" href="#">Forgot password?</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- SubNavbar -->
+            <nav class="navbar navbar-main navbar-expand-xl border-bottom">
+                <div class="container">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav5"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="main_nav5">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="home.html"><strong>Home</strong></a>
+                            </li>
+                            <li class="nav-item dropdown" id="dropdownhover">
+                                <a class="nav-link" data-toggle="dropdown" href="#"><strong>Brands</strong></a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Acer</a>
+                                    <a class="dropdown-item" href="#">AMD</a>
+                                    <a class="dropdown-item" href="#">Asus</a>
+                                    <a class="dropdown-item" href="#">Intel</a>
+                                    <a class="dropdown-item" href="#">Lenovo</a>
+                                    <a class="dropdown-item" href="#">Western Digital</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown" id="dropdownhover">
+                                <a class="nav-link" data-toggle="dropdown" href="#"><strong>Categories</strong></a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Laptop</a>
+                                    <a class="dropdown-item" href="#">Motherboard, Video Card & Processor</a>
+                                    <a class="dropdown-item" href="#">Casing, Monitor & Power Supply</a>
+                                    <a class="dropdown-item" href="#">Accessories</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="productlist.html"><strong>Shop</strong></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- End SubNavbar// -->
+        </header>
+        <!-- END HeadNavbar -->
+
+        <!-- Section PageTop -->
+        <section class="section-pagetop bg">
+            <div class="container">
+                <h2 class="title-page">All products</h2>
+                <nav>
+                    <ol class="breadcrumb text-white">
+                        <li class="breadcrumb-item"><a href="home.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Shop</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+        <!-- END Section PageTop -->
+
+        <!-- Products Section -->
+        <section class="padding-y-sm">
+            <div class="container">
+                <div class="row">
+                    <main class="col-md-9">
+                        <header class="border-bottom mb-4 pb-3">
+                            <div class="form-inline">
+                                <span class="mr-md-auto">12 Items found </span>
+                                <select class="mr-2 form-control">
+                                    <option>Latest items</option>
+                                    <option>Trending</option>
+                                    <option>Most Popular</option>
+                                    <option>Cheapest</option>
+                                </select>
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-outline-secondary" data-toggle="tooltip" title="List view">
+                                        <i class="fa fa-bars"></i></a>
+                                    <a href="#" class="btn  btn-outline-secondary active" data-toggle="tooltip" title="Grid view">
+                                        <i class="fa fa-th"></i></a>
+                                </div>
+                            </div>
+                        </header>
+                        <!-- Products -->
+                        <div class="row">
+                            <div class="col-md-4">
+                                <figure class="card card-product-grid">
+                                    <div class="img-wrap">
+                                        <a href="#"><img id="image1"></a>
+                                        <a class="btn-overlay" id="a-image1" data-fancybox><i class="fa fa-search-plus"></i> Quick view</a>
+                                    </div> 
+                                    <figcaption class="info-wrap">
+                                        <div class="fix-height">
+                                            <a href="#" class="title" id="title1"></a>
+                                            <div class="price-wrap mt-2">
+                                                <span class="price" id="price1"></span>
+                                            </div> 
+                                        </div>
+                                        <button onclick="myFunction()" class="btn btn-block btn-primary add-cart" id="add-cart1">Add to cart </button>
+                                        <div id="snackbar">Added to cart</div>
+                                    </figcaption>
+                                </figure>
+                            </div> 
+                        
+                            <div class="col-md-4">
+                                <figure class="card card-product-grid">
+                                    <div class="img-wrap">
+                                        <a href="#"><img id="image2"></a>
+                                        <a class="btn-overlay" id="a-image2" data-fancybox><i class="fa fa-search-plus"></i> Quick view</a>
+                                    </div> 
+                                    <figcaption class="info-wrap">
+                                        <div class="fix-height">
+                                            <a href="#" class="title" id="title2"></a>
+                                            <div class="price-wrap mt-2">
+                                                <span class="price" id="price2"></span>
+                                            </div> 
+                                        </div>
+                                        <button onclick="myFunction()" class="btn btn-block btn-primary add-cart" id="add-cart2">Add to cart </button>
+                                        <div id="snackbar">Added to cart</div>
+                                    </figcaption>
+                                </figure>
+                            </div> 
+                        
+                            <div class="col-md-4">
+                                <figure class="card card-product-grid">
+                                    <div class="img-wrap">
+                                        <a href="#"><img id="image3"></a>
+                                        <a class="btn-overlay" id="a-image3" data-fancybox><i class="fa fa-search-plus"></i> Quick view</a>
+                                    </div> 
+                                    <figcaption class="info-wrap">
+                                        <div class="fix-height">
+                                            <a href="#" class="title" id="title3"></a>
+                                            <div class="price-wrap mt-2">
+                                                <span class="price" id="price3"></span>
+                                            </div> 
+                                        </div>
+                                        <button onclick="myFunction()" class="btn btn-block btn-primary add-cart" id="add-cart3">Add to cart </button>
+                                        <div id="snackbar">Added to cart</div>
+                                    </figcaption>
+                                </figure>
+                            </div> 
+                        
+                            <div class="col-md-4">
+                                <figure class="card card-product-grid">
+                                    <div class="img-wrap">
+                                        <a href="#"><img id="image4"></a>
+                                        <a class="btn-overlay" id="a-image4" data-fancybox><i class="fa fa-search-plus"></i> Quick view</a>
+                                    </div> 
+                                    <figcaption class="info-wrap">
+                                        <div class="fix-height">
+                                            <a href="#" class="title" id="title4"></a>
+                                            <div class="price-wrap mt-2">
+                                                <span class="price" id="price4"></span>
+                                            </div> 
+                                        </div>
+                                        <button onclick="myFunction()" class="btn btn-block btn-primary add-cart" id="add-cart4">Add to cart </button>
+                                        <div id="snackbar">Added to cart</div>
+                                    </figcaption>
+                                </figure>
+                            </div> 
+                        
+                            <div class="col-md-4">
+                                <figure class="card card-product-grid">
+                                    <div class="img-wrap">
+                                        <a href="#"><img id="image5"></a>
+                                        <a class="btn-overlay" id="a-image5" data-fancybox><i class="fa fa-search-plus"></i> Quick view</a>
+                                    </div> 
+                                    <figcaption class="info-wrap">
+                                        <div class="fix-height">
+                                            <a href="#" class="title" id="title5"></a>
+                                            <div class="price-wrap mt-2">
+                                                <span class="price" id="price5"></span>
+                                            </div> 
+                                        </div>
+                                        <button onclick="myFunction()" class="btn btn-block btn-primary add-cart" id="add-cart5">Add to cart </button>
+                                        <div id="snackbar">Added to cart</div>
+                                    </figcaption>
+                                </figure>
+                            </div> 
+                        
+                            <div class="col-md-4">
+                                <figure class="card card-product-grid">
+                                    <div class="img-wrap">
+                                        <a href="#"><img id="image6"></a>
+                                        <a class="btn-overlay" id="a-image6" data-fancybox><i class="fa fa-search-plus"></i> Quick view</a>
+                                    </div> 
+                                    <figcaption class="info-wrap">
+                                        <div class="fix-height">
+                                            <a href="#" class="title" id="title6"></a>
+                                            <div class="price-wrap mt-2">
+                                                <span class="price" id="price6"></span>
+                                            </div> 
+                                        </div>
+                                        <button onclick="myFunction()" class="btn btn-block btn-primary add-cart" id="add-cart6">Add to cart </button>
+                                        <div id="snackbar">Added to cart</div>
+                                    </figcaption>
+                                </figure>
+                            </div> 
+                        
+                            <div class="col-md-4">
+                                <figure class="card card-product-grid">
+                                    <div class="img-wrap">
+                                        <a href="#"><img id="image7"></a>
+                                        <a class="btn-overlay" id="a-image7" data-fancybox><i class="fa fa-search-plus"></i> Quick view</a>
+                                    </div> 
+                                    <figcaption class="info-wrap">
+                                        <div class="fix-height">
+                                            <a href="#" class="title" id="title7"></a>
+                                            <div class="price-wrap mt-2">
+                                                <span class="price" id="price7"></span>
+                                            </div> 
+                                        </div>
+                                        <button onclick="myFunction()" class="btn btn-block btn-primary add-cart" id="add-cart7">Add to cart </button>
+                                        <div id="snackbar">Added to cart</div>
+                                    </figcaption>
+                                </figure>
+                            </div> 
+                        
+                            <div class="col-md-4">
+                                <figure class="card card-product-grid">
+                                    <div class="img-wrap">
+                                        <a href="#"><img id="image8"></a>
+                                        <a class="btn-overlay" id="a-image8" data-fancybox><i class="fa fa-search-plus"></i> Quick view</a>
+                                    </div> 
+                                    <figcaption class="info-wrap">
+                                        <div class="fix-height">
+                                            <a href="#" class="title" id="title8"></a>
+                                            <div class="price-wrap mt-2">
+                                                <span class="price" id="price8"></span>
+                                            </div> 
+                                        </div>
+                                        <button onclick="myFunction()" class="btn btn-block btn-primary add-cart" id="add-cart8">Add to cart </button>
+                                        <div id="snackbar">Added to cart</div>
+                                    </figcaption>
+                                </figure>
+                            </div> 
+
+                            <div class="col-md-4">
+                                <figure class="card card-product-grid">
+                                    <div class="img-wrap">
+                                        <a href="#"><img id="image9"></a>
+                                        <a class="btn-overlay" id="a-image9" data-fancybox><i class="fa fa-search-plus"></i> Quick view</a>
+                                    </div> 
+                                    <figcaption class="info-wrap">
+                                        <div class="fix-height">
+                                            <a href="#" class="title" id="title9"></a>
+                                            <div class="price-wrap mt-2">
+                                                <span class="price" id="price9"></span>
+                                            </div> 
+                                        </div>
+                                        <button onclick="myFunction()" class="btn btn-block btn-primary add-cart" id="add-cart9">Add to cart </button>
+                                        <div id="snackbar">Added to cart</div>
+                                    </figcaption>
+                                </figure>
+                            </div> 
+
+                            <div class="col-md-4">
+                                <figure class="card card-product-grid">
+                                    <div class="img-wrap">
+                                        <a href="#"><img id="image10"></a>
+                                        <a class="btn-overlay" id="a-image10" data-fancybox><i class="fa fa-search-plus"></i> Quick view</a>
+                                    </div> 
+                                    <figcaption class="info-wrap">
+                                        <div class="fix-height">
+                                            <a href="#" class="title" id="title10"></a>
+                                            <div class="price-wrap mt-2">
+                                                <span class="price" id="price10"></span>
+                                            </div> 
+                                        </div>
+                                        <button onclick="myFunction()" class="btn btn-block btn-primary add-cart" id="add-cart10">Add to cart </button>
+                                        <div id="snackbar">Added to cart</div>
+                                    </figcaption>
+                                </figure>
+                            </div> 
+
+                            <div class="col-md-4">
+                                <figure class="card card-product-grid">
+                                    <div class="img-wrap">
+                                        <a href="#"><img id="image11"></a>
+                                        <a class="btn-overlay" id="a-image11" data-fancybox><i class="fa fa-search-plus"></i> Quick view</a>
+                                    </div> 
+                                    <figcaption class="info-wrap">
+                                        <div class="fix-height">
+                                            <a href="#" class="title" id="title11"></a>
+                                            <div class="price-wrap mt-2">
+                                                <span class="price" id="price11"></span>
+                                            </div> 
+                                        </div>
+                                        <button onclick="myFunction()" class="btn btn-block btn-primary add-cart" id="add-cart11">Add to cart </button>
+                                        <div id="snackbar">Added to cart</div>
+                                    </figcaption>
+                                </figure>
+                            </div> 
+
+                            <div class="col-md-4">
+                                <figure class="card card-product-grid">
+                                    <div class="img-wrap">
+                                        <a href="#"><img id="image12"></a>
+                                        <a class="btn-overlay" id="a-image12" data-fancybox><i class="fa fa-search-plus"></i> Quick view</a>
+                                    </div> 
+                                    <figcaption class="info-wrap">
+                                        <div class="fix-height">
+                                            <a href="#" class="title" id="title12"></a>
+                                            <div class="price-wrap mt-2">
+                                                <span class="price" id="price12"></span>
+                                            </div> 
+                                        </div>
+                                        <button onclick="myFunction()" class="btn btn-block btn-primary add-cart" id="add-cart12">Add to cart </button>
+                                        <div id="snackbar">Added to cart</div>
+                                    </figcaption>
+                                </figure>
+                            </div> 
+                        </div> 
+                    </main>
+                    <!-- End Products -->
+                    <aside class="col-md-3">
+                        <div class="card">
+                            <article class="filter-group">
+                                <header class="card-header">
+                                    <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
+                                        <i class="icon-control fa fa-chevron-down"></i>
+                                        <h6 class="title">Product type</h6>
+                                    </a>
+                                </header>
+                                <div class="filter-content collapse show" id="collapse_1">
+                                    <div class="card-body">
+                                        <form class="pb-3">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Search">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-light" type="button"><i class="fa fa-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <ul class="list-menu">
+                                            <li><a href="#">Laptop </a></li>
+                                            <li><a href="#">Motherboard </a></li>
+                                            <li><a href="#">Video Card </a></li>
+                                            <li><a href="#">Processor </a></li>
+                                            <li><a href="#">Casing </a></li>
+                                            <li><a href="#">Monitor</a></li>
+                                            <li><a href="#">Power Supply </a></li>
+                                            <li><a href="#">Accessories </a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </article> 
+                            <article class="filter-group">
+                                <header class="card-header">
+                                    <a href="#" data-toggle="collapse" data-target="#collapse_2" aria-expanded="true" class="">
+                                        <i class="icon-control fa fa-chevron-down"></i>
+                                        <h6 class="title">Brands </h6>
+                                    </a>
+                                </header>
+                                <div class="filter-content collapse show" id="collapse_2">
+                                    <div class="card-body">
+                                        <label class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input">
+                                            <div class="custom-control-label">Acer
+                                                <b class="badge badge-pill badge-light float-right">6</b>
+                                            </div>
+                                        </label>
+                                        <label class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input">
+                                            <div class="custom-control-label">AMD
+                                                <b class="badge badge-pill badge-light float-right">13</b>
+                                            </div>
+                                        </label>
+                                        <label class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input">
+                                            <div class="custom-control-label">Asus
+                                                <b class="badge badge-pill badge-light float-right">17</b>
+                                            </div>
+                                        </label>
+                                        <label class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input">
+                                            <div class="custom-control-label">Intel
+                                                <b class="badge badge-pill badge-light float-right">10</b>
+                                            </div>
+                                        </label>
+                                        <label class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input">
+                                            <div class="custom-control-label">Lenovo
+                                                <b class="badge badge-pill badge-light float-right">4</b>
+                                            </div>
+                                        </label>
+                                        <label class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input">
+                                            <div class="custom-control-label">Western Digital
+                                                <b class="badge badge-pill badge-light float-right">3</b>
+                                            </div>
+                                        </label>
+                                    </div> 
+                                </div>
+                            </article> 
+                            <article class="filter-group">
+                                <header class="card-header">
+                                    <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
+                                        <i class="icon-control fa fa-chevron-down"></i>
+                                        <h6 class="title">Price range </h6>
+                                    </a>
+                                </header>
+                                <div class="filter-content collapse show" id="collapse_3">
+                                    <div class="card-body">
+                                        <input type="range" class="custom-range" min="0" max="100" name="">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Min</label>
+                                                <input class="form-control" placeholder="$0" type="number">
+                                            </div>
+                                            <div class="form-group text-right col-md-6">
+                                                <label>Max</label>
+                                                <input class="form-control" placeholder="$1,0000" type="number">
+                                            </div>
+                                        </div> 
+                                        <button class="btn btn-block btn-primary">Apply</button>
+                                    </div>
+                                </div>
+                            </article> 
+                        </div> 
+                    </aside> 
+                </div>
+            </div>
+        </section>
+        <!-- End Products Section -->
+
+        <!-- ScrolltoTopBTN -->
+        <button class="scrollToTopBtn"><i class="fas fa-caret-up"></i></button>
+
+        <!-- FOOTER -->
+        <footer class="section-footer border-top bg" id="fp">
+            <div class="container">
+                <section class="footer-top  padding-y">
+                    <div class="row">
+                        <aside class="col-md-4 col-12">
+                            <article class="mr-md-4">
+                                <h5 class="title">Contact us</h5>
+                                <p>"Our Name Speaks For Our Business"</p>
+                                <ul class="list-icon">
+                                    <li> <i class="icon fa fa-map-marker"> </i>Roxas Ave., Corner Padre Gomez Street, Barangay
+                                        34-D Poblacion 8000 Davao City, Philippines </li>
+                                    <li> <i class="icon fa fa-envelope"> </i> computerworld@gmail.com</li>
+                                    <!-- Sample Email of CW -->
+                                    <li> <i class="icon fa fa-phone"> </i> (082) 222-4058, (082) 227-6132</li>
+                                    <li> <i class="icon fa fa-clock"> </i>Mon-Sat 9:00am - 6:00pm</li>
+                                </ul>
+                            </article>
+                        </aside>
+                        <aside class="col-md col-6">
+                            <h6 class="title">Who We Are?</h6>
+                            <ul class="list-unstyled">
+                                <li> <a href="about.html">About us</a></li>
+                                <li> <a
+                                        href="https://www.google.com/maps/search/?api=1&query=7.070110200762624, 125.61473827864309&query_place_id=ChIJkYxMXpxt-TIR6Uu0PMKIzgw">Locate
+                                        Us</a></li>
+                            </ul>
+                        </aside>
+                        <aside class="col-md col-6">
+                            <h6 class="title">Need Help?</h6>
+                            <ul class="list-unstyled">
+                                <li> <a href="https://www.messenger.com/t/1558316877724712/">Contact us</a></li>
+                            </ul>
+                        </aside>
+                        <aside class="col-md col-6">
+                            <h6 class="title">Account</h6>
+                            <ul class="list-unstyled">
+                                <li> <a href="cart.html"> My Orders </a></li>
+                            </ul>
+                        </aside>
+                        <aside class="col-md">
+                            <h6 class="title">Social</h6>
+                            <ul class="list-unstyled">
+                                <li><a href="https://www.facebook.com/ComputerWorldSuperstore/?ref=page_internal"> <i
+                                            class="fab fa-facebook"></i> Facebook </a></li>
+                            </ul>
+                        </aside>
+                    </div>
+                </section> 
+        
+                <section class="footer-bottom border-top row">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <span class="pr-2">&copy 2020 Computer World Superstore All Rights Reserved</span>
+                                <span class="pr-2"><a href="#">Privacy policy</a></span>
+                                <span class="pr-2"><a href="#">Terms of use</a></span>
+                            </div>
+                            <div class="col-md-4 text-md-right">
+                                <span class="pr-2">Philippines</span>
+                                <i class="fab fa-lg fa-cc-visa"></i>
+                                <i class="fab fa-lg fa-cc-paypal"></i>
+                                <i class="fab fa-lg fa-cc-mastercard"></i>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </footer>
+        <!-- FOOTER END -->
+
+        <!-- BootstrapEcommerceJS -->
+        <script src="../js/jquery-3.5.1.slim.min.js" type="text/javascript"></script>
+        <script src="../js/ecommerce_bootstrap.bundle.min.js" type="text/javascript"></script>
+        <script src="../js/script.js" type="text/javascript"></script>
+        <!-- BootstrapJS -->
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <!-- FancyBox -->
+        <script src="../customjs/jquery.fancybox.js" type="text/javascript"></script>
+        <!-- FontAwesomeJS -->
+        <script defer src="../fontawesomejs/all.js"></script>
+        <script defer src="../fontawesomejs/brands.js"></script>
+        <script defer src="../fontawesomejs/solid.js"></script>
+        <script defer src="../fontawesomejs/fontawesome.js"></script>
+        <!-- Button Click to the Top -->
+        <script>
+            $(document).ready(function () {
+                $("#dropdownhover").hover(function () {
+                    var dropdownMenu = $(this).children(".dropdown-menu");
+                    if (dropdownMenu.is(":visible")) {
+                        dropdownMenu.parent().toggleClass("open");
+                    }
+                });
+            });
+        </script>
+        <!-- Simple Toast -->
+        <script>
+            function myFunction() {
+                var x = document.getElementById("snackbar");
+                x.className = "show";
+                setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+            }
+        </script>
+        <!-- SubNavbar Hover -->
+        <script>
+            // We select the element we want to target
+            var target = document.querySelector("#fp");
+
+            var scrollToTopBtn = document.querySelector(".scrollToTopBtn")
+            var rootElement = document.documentElement
+
+            // Next we want to create a function that will be called when that element is intersected
+            function callback(entries, observer) {
+                // The callback will return an array of entries, even if you are only observing a single item
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Show button
+                        scrollToTopBtn.classList.add("showBtn")
+                    } else {
+                        // Hide button
+                        scrollToTopBtn.classList.remove("showBtn")
+                    }
+                });
+            }
+
+            function scrollToTop() {
+                rootElement.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                })
+            }
+            scrollToTopBtn.addEventListener("click", scrollToTop);
+
+            // Next we instantiate the observer with the function we created above. This takes an optional configuration
+            // object that we will use in the other examples.
+            let observer = new IntersectionObserver(callback);
+            // Finally start observing the target element
+            observer.observe(target);
+        </script>
+        <!-- Local Storage -->
+        <script>
+            var ProductDetails = window.localStorage;
+            window.addEventListener('DOMContentLoaded', function () {
+                loadDetails();
+            });
+            function savingData() {
+                var product_details = { dtalist: [
+                    { productname: "Asus Zenbook 13 UX325EA Intel® Core™ i5-1135G7 processor", price: 54995.00, image: "../img/ZenbookProduct.jpg", tag: 1, inCart: 0 },
+                    { productname: "darkFlash DLM21 White Micro Computer Case with Door Opening Tempered Glass", price: 2500.00, image: "../img/DarkFlash_DLM21.jpg", tag: 2, inCart: 0 },
+                    { productname: "Asus AC1300 Dual Band Wi-Fi Router with MU-MIMO and Parental Controls", price: 3890.00, image: "../img/ASUS_RT-AC1300UHP.jpg", tag: 3, inCart: 0 },
+                    { productname: "Western Digital_BLACK P10 Game Drive 5TB USB 3.2 Gen 1", price: 6270.00, image: "../img/WD-Black-P10.png", tag: 4, inCart: 0 },
+                    { productname: "TUF Gaming M3 ergonomic wired RGB gaming mouse with 7000-dpi sensor", price: 1050.00, image: "../img/TUFM3.png", tag: 5, inCart: 0 },
+                    { productname: "TUF Gaming VG27AQL1A G-SYNC Compatible Gaming Monitor –27 inch WQHD", price: 24989.00, image: "../img/TUF%20Gaming%20VG27AQL1A.jpg", tag: 6, inCart: 0 },
+                    { productname: "ROG MAXIMUS XII HERO 10th Gen Intel® Core™ processors", price: 24980.00, image: "../img/ROG%20MAXIMUS%20XII%20HERO.png", tag: 7, inCart: 0 },
+                    { productname: "COOLER MASTER MWE 500 WHITE 80+ 500W BRONZE RATED POWER SUPPLY", price: 2500.00, image: "../img/CoolerMasterPSU.png", tag: 8, inCart: 0 },
+                    { productname: "INTEL CORE i7-8700 3.2GHZ 12MB CACHE LGA1151 8TH GEN PROCESSOR", price: 18995.00, image: "../img/IntelCorei78thGen.jpg", tag: 9, inCart: 0 },
+                    { productname: "AMD Ryzen™ 5 2400G with Radeon™ RX Vega 11 Graphics", price: 7161.00, image: "../img/AMDRyzen52400g.webp", tag: 10, inCart: 0 },
+                    { productname: "MSI GTX1650 SUPER 4GB GDDR6 128-Bit Single Fan Graphics Card", price: 9300.00, image: "../img/MSIGTX1650.jpg", tag: 11, inCart: 0 },
+                    { productname: "Lenovo Legion 5i (15”) Powered by up to 10th Gen Intel® Core™ i7 H processors", price: 68995.00, image: "../img/LenovoLegion5i.webp", tag: 12, inCart: 0 },
+                ]}
+                var datalist = ProductDetails.getItem("datalist")
+                var convertJSON = JSON.stringify(product_details);
+                ProductDetails.setItem("datalist", convertJSON);
+            }
+
+            function saveCurrentProductView(index) {
+                ProductDetails.setItem("currentIndex", index);
+                window.location.href = "./productview.html";
+            }
+
+            function loadDetails() {
+                savingData();
+                var datalist = ProductDetails.getItem("datalist");
+                if (datalist != null) {
+                    var convertObject = JSON.parse(datalist);
+                    var ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+                    var titles = ids.map((id) => document.getElementById(`title${id}`));
+                    var prices = ids.map((id) => document.getElementById(`price${id}`));
+                    var images = ids.map((id) => document.getElementById(`image${id}`));
+                    var imageLinks = ids.map((id) => document.getElementById(`a-image${id}`));
+
+                    ids.forEach((id, index) => {
+                        const addToCartButton = document.getElementById(`add-cart${id}`);
+                        addToCartButton.addEventListener('click', () => {
+                            addToCart(convertObject.dtalist[index], 1);
+                        });
+                        titles[index].onclick = () => saveCurrentProductView(index);
+                        images[index].onclick = () => saveCurrentProductView(index);
+                        images[index].src = convertObject.dtalist[index].image;
+                        imageLinks[index].href = convertObject.dtalist[index].image;
+                        titles[index].innerHTML = convertObject.dtalist[index].productname;
+                        prices[index].innerHTML = "₱" + convertObject.dtalist[index].price + ".00";
+                    });
+                }
+            }
+        </script>
+        <script src="../customjs/main.js">
+        </script>
+    </body>
+</html>

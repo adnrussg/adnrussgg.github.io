@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <style>
+            .bgimg-1, .bgimg-2 {
+                position: relative;
+                opacity: 0.7;
+                background-attachment: fixed;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                }
+            .bgimg-1 {
+                background-image: url("../img/ComputerWorldSuperstore.jpg");
+                min-height: 500px;
+                }
+            .bgimg-2 {
+            background-image: url("../img/ComputerWorldSuperstore.jpg");
+            min-height: 300px;
+            }
+            .scrollToTopBtn {
+                background-color: #726b6b;
+                border: none;
+                border-radius: 50%;
+                color: white;
+                cursor: pointer;
+                font-size: 24px;
+                line-height: 48px;
+                width: 48px;
+                
+                /* place it at the bottom right corner */
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                /* keep it at the top of everything else */
+                z-index: 100;
+                /* hide with opacity */
+                opacity: 0;
+                /* also add a translate effect */
+                transform: translateY(100px);
+                /* and a transition */
+                transition: all .5s ease
+            }
+            .scrollToTopBtn:hover{
+                background-color: black;
+            }
+            .showBtn {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        </style>
+        <title>About Us</title>
+        <link rel="shortcut icon" type="icon" href="../img/CWLogo.png" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap -->
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="../customcss/vendorstyles.css">
+        <link href="../customcss/styles.css" rel="stylesheet">
+        <!-- fonticon -->
+        <link href="../fontawesomecss/all.css" rel="stylesheet" type="text/css" />
+        <link href="../fontawesomecss/fontawesome.min.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+        <!-- HeadNavbar -->
+        <header class="header header-dark header-sticky bg-blue">
+            <div class="container">
+                <div class="row">
+                    <nav class="navbar navbar-expand-lg navbar-dark">
+                        <a href="home.html" class="navbar-brand order-1 order-lg-2"><img src="../img/CWLogo.png" alt="Logo"
+                                style="width: 60px; height: 60px;"></a>
+                        <button class="navbar-toggler order-2" type="button" data-toggle="collapse"
+                            data-target=".navbar-collapse" aria-controls="navbarMenu" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+        
+                        <div class="collapse navbar-collapse order-3 order-lg-1" id="navbarMenu">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="home.html">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="productlist.html">Shop</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="https://www.facebook.com/ComputerWorldSuperstore/?ref=page_internal">Facebook</a>
+                                </li>
+                            </ul>
+                        </div>
+        
+                        <div class="collapse navbar-collapse order-4 order-lg-3" id="navbarMenu2">
+                            <ul class="navbar-nav ml-auto">
+                                <a href="cart.html" class="widget-header mr-2">
+                                    <div class="icon">
+                                        <i class="icon-sm rounded-circle border"><i class="fas fa-shopping-cart"></i></i>
+                                        <span class="notify">0</span>
+                                    </div>
+                                </a>
+                                <div class="widget-header dropdown">
+                                    <a href="#" data-toggle="dropdown" data-offset="20,10">
+                                        <div class="icontext">
+                                            <div class="icon">
+                                                <i class="icon-sm rounded-circle border"><i class="fa fa-user"></i></i>
+                                            </div>
+                                            <div class="text">
+                                                <small class="text-muted">Hello, Sign in</small>
+                                                <div class="thistext">My account <i class="fa fa-caret-down"></i></div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <form class="px-4 py-3">
+                                            <div class="form-group">
+                                                <label>Email address</label>
+                                                <input type="email" class="form-control" placeholder="email@example.com">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Password</label>
+                                                <input type="password" class="form-control" placeholder="Password">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Sign in</button>
+                                        </form>
+                                        <hr class="dropdown-divider">
+                                        <a class="dropdown-item" href="#">Have account? Sign up</a>
+                                        <a class="dropdown-item" href="#">Forgot password?</a>
+                                    </div>
+                                </div>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <!-- End HeadNavbar -->
+
+        <!-- Parallax -->
+        <div class="bgimg-1">
+        </div>
+        <div class="col-lg-12 row justify-content-center" style="color: rgb(0, 0, 0);background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
+            <h1 class="mb-2" style="text-align:center;">About Us</h3>
+            <p class="lead" style="font-weight: 500;">Computer World Superstore is a wholesale and retail company that provides quality IT products and services that is
+            reliable for your every need. Our business began in 1985 and for almost 30 years we are trusted for the support of our supplies. We are one of the shops here in Davao City
+            with an exclusive supplies department and our employees are highly trained and knowledgeable.</p>
+        </div>
+        <div class="bgimg-2">
+        </div>
+        <!-- Parallax End -->
+
+        <!-- ScrolltoTopBTN -->
+        <button class="scrollToTopBtn"><i class="fas fa-caret-up"></i></button>
+        
+        <!-- FOOTER -->
+        <footer class="section-footer border-top bg" style="padding-bottom: 0; padding-top: 0;" id="fp">
+            <div class="container">
+                <section class="footer-top  padding-y">
+                    <div class="row">
+                        <aside class="col-md-4 col-12">
+                            <article class="mr-md-4">
+                                <h5 class="title">Contact us</h5>
+                                <p>"Our Name Speaks For Our Business"</p>
+                                <ul class="list-icon">
+                                    <li> <i class="icon fa fa-map-marker"> </i>Roxas Ave., Corner Padre Gomez Street, Barangay
+                                        34-D Poblacion 8000 Davao City, Philippines </li>
+                                    <li> <i class="icon fa fa-envelope"> </i> computerworld@gmail.com</li>
+                                    <!-- Sample Email of CW -->
+                                    <li> <i class="icon fa fa-phone"> </i> (082) 222-4058, (082) 227-6132</li>
+                                    <li> <i class="icon fa fa-clock"> </i>Mon-Sat 9:00am - 6:00pm</li>
+                                </ul>
+                            </article>
+                        </aside>
+                        <aside class="col-md col-6">
+                            <h6 class="title">Who We Are?</h6>
+                            <ul class="list-unstyled">
+                                <li> <a href="about.html">About us</a></li>
+                                <li> <a href="https://www.google.com/maps/search/?api=1&query=7.070110200762624, 125.61473827864309&query_place_id=ChIJkYxMXpxt-TIR6Uu0PMKIzgw">Locate Us</a></li>
+                            </ul>
+                        </aside>
+                        <aside class="col-md col-6">
+                            <h6 class="title">Need Help?</h6>
+                            <ul class="list-unstyled">
+                                <li> <a href="https://www.messenger.com/t/1558316877724712/">Contact us</a></li>
+                            </ul>
+                        </aside>
+                        <aside class="col-md col-6">
+                            <h6 class="title">Account</h6>
+                            <ul class="list-unstyled">
+                                <li> <a href="cart.html"> My Orders </a></li>
+                            </ul>
+                        </aside>
+                        <aside class="col-md">
+                            <h6 class="title">Social</h6>
+                            <ul class="list-unstyled">
+                                <li><a href="https://www.facebook.com/ComputerWorldSuperstore/?ref=page_internal"> <i
+                                            class="fab fa-facebook"></i> Facebook </a></li>
+                            </ul>
+                        </aside>
+                    </div>
+                </section>
+        
+                <section class="footer-bottom border-top row">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <span class="pr-2">&copy 2020 Computer World Superstore All Rights Reserved</span>
+                                <span class="pr-2"><a href="#">Privacy policy</a></span>
+                                <span class="pr-2"><a href="#">Terms of use</a></span>
+                            </div>
+                            <div class="col-md-4 text-md-right">
+                                <span class="pr-2">Philippines</span>
+                                <i class="fab fa-lg fa-cc-visa"></i>
+                                <i class="fab fa-lg fa-cc-paypal"></i>
+                                <i class="fab fa-lg fa-cc-mastercard"></i>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </footer>
+        <!-- FOOTER END -->
+
+        <!-- BootstrapJS -->
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script src="../customjs/vendor.min.js"></script>
+        <script src="../customjs/app.js"></script>
+        <!-- FontAwesomeJS -->
+        <script defer src="../fontawesomejs/all.js"></script>
+        <script defer src="../fontawesomejs/brands.js"></script>
+        <script defer src="../fontawesomejs/solid.js"></script>
+        <script defer src="../fontawesomejs/fontawesome.js"></script>
+        <!-- ButtonClick to the Top -->
+        <script>
+            // We select the element we want to target
+            var target = document.querySelector("#fp");
+
+            var scrollToTopBtn = document.querySelector(".scrollToTopBtn")
+            var rootElement = document.documentElement
+
+            // Next we want to create a function that will be called when that element is intersected
+            function callback(entries, observer) {
+                // The callback will return an array of entries, even if you are only observing a single item
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Show button
+                        scrollToTopBtn.classList.add("showBtn")
+                    } else {
+                        // Hide button
+                        scrollToTopBtn.classList.remove("showBtn")
+                    }
+                });
+            }
+
+            function scrollToTop() {
+                rootElement.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                })
+            }
+            scrollToTopBtn.addEventListener("click", scrollToTop);
+
+            // Next we instantiate the observer with the function we created above. This takes an optional configuration
+            // object that we will use in the other examples.
+            let observer = new IntersectionObserver(callback);
+            // Finally start observing the target element
+            observer.observe(target);
+        </script>
+        <!-- Local Storage to show number of items in cart -->
+        <script src="../customjs/main.js"></script>
+    </body>
+</html>
